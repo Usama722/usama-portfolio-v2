@@ -77,7 +77,7 @@ const portfolioConfig = {
             description: "VBA-based system handling invoicing, recoveries, invoice aging with automated reports.",
             longDescription: "Built a comprehensive invoicing system in Excel VBA that automated the entire billing process. Features include: automatic invoice generation, recovery tracking, aging reports, client statements, and real-time dashboard. Reduced manual work by 80% and improved accuracy.",
             tags: ["Excel VBA", "Automation", "Reporting", "Invoicing"],
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            image: "https://media.istockphoto.com/id/2193049871/photo/businessman-works-statistics-data-dashboard-information-business-technology-and-strategy.webp?a=1&b=1&s=612x612&w=0&k=20&c=qBiU8oloyEWIGgmpjWixX_rlxDQ4O14BJikj6m2PTM0=",
             githubUrl: "",
             liveUrl: "",
             featured: true
@@ -88,7 +88,7 @@ const portfolioConfig = {
             description: "VBA application for tracking customer credits, limits, and payment histories.",
             longDescription: "Developed a credit management system that tracks customer credit limits, payment histories, and generates risk assessment reports. Includes automated alerts for overdue payments and credit limit breaches.",
             tags: ["Excel VBA", "Credit Management", "Risk Analysis"],
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            image: "https://images.unsplash.com/photo-1735825764478-674bb8df9d4a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fENyZWRpdCUyME1hbmFnZW1lbnQlMjBTeXN0ZW18ZW58MHx8MHx8fDA%3D",
             githubUrl: "",
             liveUrl: "",
             featured: true
@@ -99,7 +99,7 @@ const portfolioConfig = {
             description: "Complete business management system with inventory, sales, purchase and accounting.",
             longDescription: "Built an integrated system for managing sales, purchases, inventory, and accounting. Features include: barcode generation, stock tracking, profit/loss reports, GST calculations, and advanced search functionality.",
             tags: ["Excel VBA", "Inventory", "Accounting", "Business Management"],
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            image: "https://media.istockphoto.com/id/2187991365/photo/financial-investment-and-success-market-stock-technology-currency-report-money-business.webp?a=1&b=1&s=612x612&w=0&k=20&c=0oplhGalSnw4hsnSbjg7UtgHS7cnaBcUh9bmQ2Hqzio=",
             githubUrl: "",
             liveUrl: "",
             featured: true
@@ -110,8 +110,9 @@ const portfolioConfig = {
             description: "Excel frontend with PostgreSQL backend for scalable invoicing and data management.",
             longDescription: "Currently developing a hybrid system where Excel serves as the frontend interface while PostgreSQL handles data storage. This eliminates Excel's row limitations and provides better data integrity, backup, and multi-user access.",
             tags: ["PostgreSQL", "Excel", "Database", "Full-Stack"],
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            image: "https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RGF0YWJhc2UlMjBJbnRlZ3JhdGlvbiUyMFN5c3RlbXxlbnwwfHwwfHx8MA%3D%3D",
             githubUrl: "",
+
             liveUrl: "",
             featured: true
         }
