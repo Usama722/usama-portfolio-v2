@@ -6,12 +6,12 @@ const portfolioConfig = {
     personal: {
         firstName: "Muhammad",
         lastName: "Usama",
-        title: "Microsoft Excel Expert with Database",
-        bio: "I'm a passionate developer with 3+ years of experience building web applications. I specialize in modern frontend technologies and have a keen eye for design.",
+        title: "Microsoft Excel Expert & Database Specialist",
+        bio: "Microsoft Excel expert with 3+ years of hands-on experience in VBA automation, data analysis, and complex reporting systems. Currently expanding skills into full-stack development with PostgreSQL and modern web technologies.",
         email: "usamazhar722@gmail.com",
         phone: "+92 307 667 4438",
         location: "Bahawalpur, Pakistan",
-        resumeUrl: "assets/docs/resume.pdf",
+        resumeUrl: "#",
 
         // Profile Images
         profileImage: "assets/images/dp.jpeg",
@@ -22,139 +22,126 @@ const portfolioConfig = {
     social: {
         github: "https://github.com/Usama722",
         linkedin: "https://www.linkedin.com/in/muhammad-usama-50989b305",
-        twitter: "https://twitter.com/yourusername",      // Update your username
-        instagram: "https://instagram.com/yourusername",  // Update your username
-        facebook: "https://facebook.com/yourusername"     // Update your username
+        twitter: "",
+        instagram: "",
+        facebook: ""
     },
 
     // ============ SKILLS ============
     skills: [
         {
-            name: "Frontend",
-            description: "HTML, CSS, JavaScript, React",
-            icon: "fab fa-html5",
-            color: "blue",
-            level: 30
-        },
-        {
-            name: "Backend",
-            description: "Flask",
-            icon: "fas fa-server",
-            color: "green",
-            level: 40
-        },
-        {
             name: "Microsoft Excel",
-            description: "Data Analysis, Pivot Tables, Formulas, VBA",
+            description: "VBA Macros, Pivot Tables, Advanced Formulas, Data Analysis",
             icon: "fas fa-file-excel",
             color: "green",
             level: 95
         },
         {
-            name: "PostgreSQL",
-            description: "Database Design, SQL Queries",
-            icon: "fas fa-database",
+            name: "VBA Automation",
+            description: "Excel Automation, User Forms, Complex Reporting Systems",
+            icon: "fas fa-robot",
             color: "blue",
-            level: 60
+            level: 90
+        },
+        {
+            name: "PostgreSQL",
+            description: "Database Design, SQL Queries, Data Management",
+            icon: "fas fa-database",
+            color: "purple",
+            level: 65
+        },
+        {
+            name: "Web Development",
+            description: "HTML, CSS, JavaScript, Responsive Design",
+            icon: "fas fa-code",
+            color: "orange",
+            level: 40
         },
     ],
 
     // ============ TECHNICAL SKILLS (Progress Bars) ============
     technicalSkills: [
-        { name: "JavaScript", level: 40, color: "blue" },
-        { name: "React", level: 30, color: "green" },
-        { name: "PostgreSQL", level: 45, color: "blue" },
         { name: "Microsoft Excel", level: 95, color: "green" },
-        { name: "Python", level: 40, color: "blue" }
+        { name: "VBA Programming", level: 90, color: "blue" },
+        { name: "PostgreSQL", level: 65, color: "purple" },
+        { name: "Data Analysis", level: 85, color: "green" },
+        { name: "HTML/CSS", level: 70, color: "orange" },
+        { name: "JavaScript", level: 40, color: "blue" }
     ],
 
     // ============ PROJECTS ============
     projects: [
         {
             id: 1,
-            title: "E-Commerce Platform",
-            description: "Full-featured online shopping platform with cart, payments, and admin dashboard.",
-            longDescription: "Built with React, Node.js, and MongoDB. Features include user authentication, product management, payment integration, and order tracking.",
-            tags: ["React", "Node.js", "MongoDB", "Express"],
-            image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-            githubUrl: "https://github.com/Usama722/ecommerce",
-            liveUrl: "https://ecommerce-demo.com",
+            title: "Complete Invoicing & Reporting System",
+            description: "VBA-based system handling invoicing, recoveries, invoice aging with automated reports.",
+            longDescription: "Built a comprehensive invoicing system in Excel VBA that automated the entire billing process. Features include: automatic invoice generation, recovery tracking, aging reports, client statements, and real-time dashboard. Reduced manual work by 80% and improved accuracy.",
+            tags: ["Excel VBA", "Automation", "Reporting", "Invoicing"],
+            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "",
+            liveUrl: "",
             featured: true
         },
         {
             id: 2,
-            title: "Data Analysis Dashboard",
-            description: "Interactive dashboard for data visualization and analysis using Excel and PostgreSQL.",
-            longDescription: "Combines Microsoft Excel for data processing with PostgreSQL for data storage. Features include real-time data updates, interactive charts, and automated reports.",
-            tags: ["Microsoft Excel", "PostgreSQL", "Data Analysis", "VBA"],
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-            githubUrl: "https://github.com/Usama722/data-dashboard",
-            liveUrl: "https://data-dashboard.com",
+            title: "Credit Management System",
+            description: "VBA application for tracking customer credits, limits, and payment histories.",
+            longDescription: "Developed a credit management system that tracks customer credit limits, payment histories, and generates risk assessment reports. Includes automated alerts for overdue payments and credit limit breaches.",
+            tags: ["Excel VBA", "Credit Management", "Risk Analysis"],
+            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "",
+            liveUrl: "",
             featured: true
         },
         {
             id: 3,
-            title: "Task Management App",
-            description: "Collaborative task management application with real-time updates.",
-            longDescription: "Built with Vue.js and Firebase. Features include team collaboration, real-time updates, file attachments, and deadline tracking.",
-            tags: ["Vue.js", "Firebase", "Real-time"],
-            image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-            githubUrl: "https://github.com/Usama722/task-app",
-            liveUrl: "https://taskapp.com",
+            title: "Sales Purchase + Accounts Management",
+            description: "Complete business management system with inventory, sales, purchase and accounting.",
+            longDescription: "Built an integrated system for managing sales, purchases, inventory, and accounting. Features include: barcode generation, stock tracking, profit/loss reports, GST calculations, and advanced search functionality.",
+            tags: ["Excel VBA", "Inventory", "Accounting", "Business Management"],
+            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "",
+            liveUrl: "",
             featured: true
         },
         {
             id: 4,
-            title: "Weather Dashboard",
-            description: "Real-time weather application with forecasts and maps.",
-            longDescription: "Uses weather API to provide real-time forecasts, interactive maps, and location-based services. Built with vanilla JavaScript and Chart.js.",
-            tags: ["JavaScript", "API", "Chart.js"],
-            image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-            githubUrl: "https://github.com/Usama722/weather-app",
-            liveUrl: "https://weatherapp.com",
-            featured: false
+            title: "Database Integration System (In Progress)",
+            description: "Excel frontend with PostgreSQL backend for scalable invoicing and data management.",
+            longDescription: "Currently developing a hybrid system where Excel serves as the frontend interface while PostgreSQL handles data storage. This eliminates Excel's row limitations and provides better data integrity, backup, and multi-user access.",
+            tags: ["PostgreSQL", "Excel", "Database", "Full-Stack"],
+            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "",
+            liveUrl: "",
+            featured: true
         }
     ],
 
     // ============ EXPERIENCE ============
     experience: [
         {
-            company: "Tech Solutions Inc.",
-            position: "Full Stack Developer",
-            period: "2022 - Present",
-            description: "Developed and maintained web applications using React and Node.js. Implemented PostgreSQL databases and optimized queries.",
+            company: "Freelance & Contract Work",
+            position: "Microsoft Excel & VBA Specialist",
+            period: "2018 - Present",
+            description: "Developed multiple VBA-based solutions for businesses including invoicing systems, credit management, data cleaning tools, and complete business management systems. Automated manual processes saving hundreds of hours monthly.",
             icon: "fas fa-briefcase"
-        },
-        {
-            company: "Data Analytics Pro",
-            position: "Data Analyst",
-            period: "2020 - 2022",
-            description: "Created data analysis reports using Microsoft Excel and PostgreSQL. Automated reporting processes and improved data accuracy by 40%.",
-            icon: "fas fa-chart-line"
-        },
-        {
-            company: "Web Design Studio",
-            position: "UI/UX Designer",
-            period: "2019 - 2020",
-            description: "Designed user interfaces for web and mobile applications. Created wireframes, prototypes, and design systems.",
-            icon: "fas fa-paint-brush"
         }
     ],
 
     // ============ EDUCATION ============
     education: [
         {
-            institution: "University of Karachi",
-            degree: "Bachelor of Computer Science",
-            period: "2016 - 2020",
-            description: "Graduated with honors. Specialized in databases and web development.",
+            institution: "Self-Taught Developer",
+            degree: "Microsoft Excel & VBA Mastery",
+            period: "2018 - Present",
+            description: "Mastered advanced Excel functions, VBA programming, Pivot Tables, and complex formula combinations through practical projects.",
             icon: "fas fa-graduation-cap"
         },
         {
-            institution: "Microsoft Certification",
-            degree: "Microsoft Excel Expert",
-            period: "2021",
-            description: "Certified in advanced Excel functions, data analysis, and automation.",
+            institution: "Online Learning",
+            degree: "PostgreSQL & Web Development",
+            period: "2023 - Present",
+            description: "Currently learning PostgreSQL database management and modern web technologies (HTML, CSS, JavaScript) to expand into full-stack development.",
             icon: "fas fa-certificate"
         }
     ],
@@ -177,9 +164,9 @@ const portfolioConfig = {
 
     // ============ SEO META DATA ============
     seo: {
-        title: "Muhammad Usama - Portfolio",
-        description: "Full Stack Developer specializing in modern web technologies, Microsoft Excel, and PostgreSQL.",
-        keywords: "web developer, full stack, microsoft excel, postgresql, javascript, react",
+        title: "Muhammad Usama - Excel VBA Expert & Database Specialist",
+        description: "Microsoft Excel VBA expert with 3+ years experience in automation, reporting systems, and business solutions. Currently expanding into PostgreSQL and web development.",
+        keywords: "excel vba, microsoft excel expert, database specialist, postgresql, automation, data analysis",
         author: "Muhammad Usama"
     }
 };

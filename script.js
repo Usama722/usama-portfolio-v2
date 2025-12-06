@@ -1,8 +1,10 @@
 // Portfolio Application - Uses config.js for all data
+// PDF generation is now in separate file (pdfGenerator.js)
 
 class PortfolioApp {
     constructor() {
         this.config = portfolioConfig;
+        this.pdfGenerator = null;
         this.init();
     }
 
@@ -18,9 +20,10 @@ class PortfolioApp {
             this.loadEducation();
             this.loadContactInfo();
             this.setupEventListeners();
+            this.setupThemeToggle();
             this.setCurrentYear();
 
-            console.log("Portfolio loaded successfully with config!");
+            console.log("Portfolio loaded successfully!");
         });
     }
 
@@ -63,11 +66,19 @@ class PortfolioApp {
         if (profileImg) {
             profileImg.src = personal.profileImage;
             profileImg.alt = `${personal.firstName} ${personal.lastName}`;
+            profileImg.onerror = () => {
+                profileImg.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80";
+            };
         }
 
         // About Image
         const aboutImg = document.getElementById("about-image");
-        if (aboutImg) aboutImg.src = personal.aboutImage;
+        if (aboutImg) {
+            aboutImg.src = personal.aboutImage;
+            aboutImg.onerror = () => {
+                aboutImg.src = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80";
+            };
+        }
 
         // Logo
         const logoText = document.getElementById("logo-text");
@@ -75,19 +86,13 @@ class PortfolioApp {
 
         if (logoText) logoText.textContent = `${personal.firstName}'s Portfolio`;
         if (footerLogo) footerLogo.textContent = `${personal.firstName}'s Portfolio`;
-
-        // Resume Button
-        const resumeBtn = document.getElementById("resume-btn");
-        if (resumeBtn && personal.resumeUrl) {
-            resumeBtn.href = personal.resumeUrl;
-            resumeBtn.download = `${personal.firstName}_${personal.lastName}_Resume.pdf`;
-        }
     }
 
     loadSocialLinks() {
         const social = this.config.social;
         const socialContainer = document.getElementById("social-icons");
         const contactSocialContainer = document.getElementById("contact-social");
+        const footerSocialContainer = document.getElementById("footer-social");
 
         const socialIcons = {
             github: "fab fa-github",
@@ -100,6 +105,7 @@ class PortfolioApp {
         // Clear containers
         if (socialContainer) socialContainer.innerHTML = "";
         if (contactSocialContainer) contactSocialContainer.innerHTML = "";
+        if (footerSocialContainer) footerSocialContainer.innerHTML = "";
 
         // Add social links
         Object.entries(social).forEach(([platform, url]) => {
@@ -125,14 +131,14 @@ class PortfolioApp {
                 }
 
                 // Footer social icons
-                const footerLinks = document.querySelectorAll("footer a");
-                footerLinks.forEach(link => {
-                    const icon = link.querySelector("i");
-                    if (icon && icon.classList.contains(socialIcons[platform].split(" ")[1])) {
-                        link.href = url;
-                        link.target = "_blank";
-                    }
-                });
+                if (footerSocialContainer) {
+                    const footerLink = document.createElement("a");
+                    footerLink.href = url;
+                    footerLink.target = "_blank";
+                    footerLink.className = "text-gray-400 hover:text-white";
+                    footerLink.innerHTML = `<i class="${socialIcons[platform]}"></i>`;
+                    footerSocialContainer.appendChild(footerLink);
+                }
             }
         });
     }
@@ -181,7 +187,7 @@ class PortfolioApp {
                 const color = colorClasses[skill.color] || colorClasses.blue;
 
                 const skillCard = `
-                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition text-center">
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition text-center enhanced-card">
                         <div class="${color.bg} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="${skill.icon} ${color.text} text-2xl"></i>
                         </div>
@@ -193,7 +199,7 @@ class PortfolioApp {
                                 <span>${skill.level}%</span>
                             </div>
                             <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                <div class="h-full ${color.progress} rounded-full" style="width: ${skill.level}%"></div>
+                                <div class="h-full ${color.progress} rounded-full progress-bar" style="width: ${skill.level}%"></div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +221,7 @@ class PortfolioApp {
                             <span class="text-gray-600">${skill.level}%</span>
                         </div>
                         <div class="h-2 bg-gray-300 rounded-full overflow-hidden">
-                            <div class="h-full ${color.progress} rounded-full" style="width: ${skill.level}%"></div>
+                            <div class="h-full ${color.progress} rounded-full progress-bar" style="width: ${skill.level}%"></div>
                         </div>
                     </div>
                 `;
@@ -246,7 +252,7 @@ class PortfolioApp {
                 .join("");
 
             const projectCard = `
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group enhanced-card">
                     <div class="h-48 overflow-hidden">
                         <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
@@ -387,7 +393,7 @@ class PortfolioApp {
         // About highlights
         if (aboutHighlights) {
             aboutHighlights.innerHTML = `
-                <div class="flex items-center">
+                <div class="flex items-center enhanced-card p-4 rounded-lg">
                     <div class="bg-blue-100 p-3 rounded-lg mr-4">
                         <i class="fas fa-code text-blue-600"></i>
                     </div>
@@ -397,7 +403,7 @@ class PortfolioApp {
                     </div>
                 </div>
 
-                <div class="flex items-center">
+                <div class="flex items-center enhanced-card p-4 rounded-lg">
                     <div class="bg-green-100 p-3 rounded-lg mr-4">
                         <i class="fas fa-file-excel text-green-600"></i>
                     </div>
@@ -407,7 +413,7 @@ class PortfolioApp {
                     </div>
                 </div>
 
-                <div class="flex items-center">
+                <div class="flex items-center enhanced-card p-4 rounded-lg">
                     <div class="bg-purple-100 p-3 rounded-lg mr-4">
                         <i class="fas fa-database text-purple-600"></i>
                     </div>
@@ -417,7 +423,7 @@ class PortfolioApp {
                     </div>
                 </div>
 
-                <div class="flex items-center">
+                <div class="flex items-center enhanced-card p-4 rounded-lg">
                     <div class="bg-yellow-100 p-3 rounded-lg mr-4">
                         <i class="fas fa-paint-brush text-yellow-600"></i>
                     </div>
@@ -430,168 +436,29 @@ class PortfolioApp {
         }
     }
 
-    // ============ EVENT LISTENERS ============
+    // ============ PDF GENERATION ============
 
-    setupEventListeners() {
-        // Mobile menu toggle
-        const menuBtn = document.getElementById("menu-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
+    // PDF generation function in your main script
+// PDF generation function in your main script.js
+async generatePDF() {
+    try {
+        // Show loading message
+        this.showToast('Generating professional CV...', 'info');
 
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener("click", () => {
-                mobileMenu.classList.toggle("hidden");
-                const icon = menuBtn.querySelector("i");
-                if (mobileMenu.classList.contains("hidden")) {
-                    icon.classList.remove("fa-times");
-                    icon.classList.add("fa-bars");
-                } else {
-                    icon.classList.remove("fa-bars");
-                    icon.classList.add("fa-times");
-                }
-            });
-        }
+        // Initialize PDF generator
+        const pdfGenerator = new PDFGenerator(this.config);
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll("#mobile-menu a").forEach((link) => {
-            link.addEventListener("click", () => {
-                if (mobileMenu) {
-                    mobileMenu.classList.add("hidden");
-                    const menuIcon = menuBtn.querySelector("i");
-                    if (menuIcon) {
-                        menuIcon.classList.remove("fa-times");
-                        menuIcon.classList.add("fa-bars");
-                    }
-                }
-            });
-        });
+        // Generate PDF
+        await pdfGenerator.generatePDF();
 
-        // Back to top button
-        const backToTopBtn = document.getElementById("back-to-top");
+        // Show success message
+        this.showToast('Professional CV downloaded successfully!', 'success');
 
-        if (backToTopBtn) {
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.remove("hidden");
-                } else {
-                    backToTopBtn.classList.add("hidden");
-                }
-            });
-
-            backToTopBtn.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });
-            });
-        }
-
-        // Contact form submission
-        // Contact form submission
-const contactForm = document.getElementById("contact-form");
-
-// Contact form submission with Formspree
-if (contactForm) {
-    contactForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById("name-input").value;
-        const email = document.getElementById("email-input").value;
-        const message = document.getElementById("message-input").value;
-
-        // Simple validation
-        if (!name || !email || !message) {
-            alert("Please fill in all fields");
-            return;
-        }
-
-        // Show loading state
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-        submitBtn.disabled = true;
-
-        try {
-            // Prepare form data for Formspree
-            const formData = new FormData();
-            formData.append("name", name);
-            formData.append("email", email);
-            formData.append("message", message);
-
-            // Send to Formspree
-            const response = await fetch(this.config.contact.formspreeId, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                // Reset form
-                contactForm.reset();
-
-                // Show success message
-                alert(this.config.contact.successMessage);
-            } else {
-                alert(this.config.contact.errorMessage);
-            }
-        } catch (error) {
-            alert("Network error. Please try again later.");
-        } finally {
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
-    });
-}
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", function (e) {
-                const targetId = this.getAttribute("href");
-                if (targetId === "#") return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-
-                    // Close mobile menu if open
-                    if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
-                        mobileMenu.classList.add("hidden");
-                        if (menuBtn) {
-                            const menuIcon = menuBtn.querySelector("i");
-                            if (menuIcon) {
-                                menuIcon.classList.remove("fa-times");
-                                menuIcon.classList.add("fa-bars");
-                            }
-                        }
-                    }
-
-                    // Calculate offset for fixed navbar
-                    const navbar = document.querySelector("nav");
-                    const navbarHeight = navbar ? navbar.offsetHeight : 0;
-                    const targetPosition = targetElement.offsetTop - navbarHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: "smooth",
-                    });
-                }
-            });
-        });
-
-        // Handle resume download
-        const resumeBtn = document.getElementById("resume-btn");
-        if (resumeBtn && this.config.personal.resumeUrl) {
-            resumeBtn.addEventListener("click", (e) => {
-                if (!this.config.personal.resumeUrl) {
-                    e.preventDefault();
-                    alert("Resume URL is not configured in config.js");
-                }
-            });
-        }
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        this.showToast('Error generating PDF. Please try again.', 'error');
     }
-
-    // ============ HELPER FUNCTIONS ============
+}    // ============ HELPER FUNCTIONS ============
 
     setCurrentYear() {
         const currentYearElement = document.getElementById("current-year");
@@ -657,6 +524,245 @@ if (contactForm) {
             `;
 
             document.body.insertAdjacentHTML("beforeend", modalHtml);
+        }
+    }
+
+    // Dark Mode Setup in your script.js
+setupThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme or prefer-color-scheme
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    // Set initial theme
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        htmlElement.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        htmlElement.classList.remove('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+        htmlElement.classList.toggle('dark');
+
+        if (htmlElement.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            this.showToast('Dark mode activated', 'info');
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            this.showToast('Light mode activated', 'info');
+        }
+    });
+}
+    showToast(message, type = 'info') {
+        // Remove existing toast
+        const existingToast = document.querySelector('.custom-toast');
+        if (existingToast) existingToast.remove();
+
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `custom-toast fixed top-24 right-6 z-50 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 ${
+            type === 'success' ? 'bg-green-100 text-green-800 border border-green-300' :
+            type === 'error' ? 'bg-red-100 text-red-800 border border-red-300' :
+            'bg-blue-100 text-blue-800 border border-blue-300'
+        }`;
+        toast.innerHTML = `
+            <div class="flex items-center">
+                <i class="fas ${
+                    type === 'success' ? 'fa-check-circle' :
+                    type === 'error' ? 'fa-exclamation-circle' :
+                    'fa-info-circle'
+                } mr-3"></i>
+                <span>${message}</span>
+            </div>
+        `;
+
+        document.body.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'translate-x-full');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    // ============ EVENT LISTENERS ============
+
+    setupEventListeners() {
+        // Mobile menu toggle
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+                const icon = menuBtn.querySelector("i");
+                if (mobileMenu.classList.contains("hidden")) {
+                    icon.classList.remove("fa-times");
+                    icon.classList.add("fa-bars");
+                } else {
+                    icon.classList.remove("fa-bars");
+                    icon.classList.add("fa-times");
+                }
+            });
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll("#mobile-menu a").forEach((link) => {
+            link.addEventListener("click", () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.add("hidden");
+                    const menuIcon = menuBtn.querySelector("i");
+                    if (menuIcon) {
+                        menuIcon.classList.remove("fa-times");
+                        menuIcon.classList.add("fa-bars");
+                    }
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById("back-to-top");
+
+        if (backToTopBtn) {
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove("hidden");
+                } else {
+                    backToTopBtn.classList.add("hidden");
+                }
+            });
+
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+        }
+
+        // Contact form submission with Formspree
+        const contactForm = document.getElementById("contact-form");
+
+        if (contactForm) {
+            contactForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById("name-input").value;
+                const email = document.getElementById("email-input").value;
+                const message = document.getElementById("message-input").value;
+
+                // Simple validation
+                if (!name || !email || !message) {
+                    this.showToast('Please fill in all fields', 'error');
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                submitBtn.disabled = true;
+
+                try {
+                    // Prepare form data for Formspree
+                    const formData = new FormData();
+                    formData.append("name", name);
+                    formData.append("email", email);
+                    formData.append("message", message);
+
+                    // Send to Formspree
+                    const response = await fetch(this.config.contact.formspreeId, {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Reset form
+                        contactForm.reset();
+
+                        // Show success message
+                        this.showToast(this.config.contact.successMessage, 'success');
+                    } else {
+                        this.showToast(this.config.contact.errorMessage, 'error');
+                    }
+                } catch (error) {
+                    this.showToast("Network error. Please try again later.", 'error');
+                } finally {
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                const targetId = this.getAttribute("href");
+                if (targetId === "#") return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+                        mobileMenu.classList.add("hidden");
+                        if (menuBtn) {
+                            const menuIcon = menuBtn.querySelector("i");
+                            if (menuIcon) {
+                                menuIcon.classList.remove("fa-times");
+                                menuIcon.classList.add("fa-bars");
+                            }
+                        }
+                    }
+
+                    // Calculate offset for fixed navbar
+                    const navbar = document.querySelector("nav");
+                    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: "smooth",
+                    });
+                }
+            });
+        });
+
+        // Handle resume download
+        const resumeBtn = document.getElementById("resume-btn");
+        const resumeBtnMobile = document.getElementById("resume-btn-mobile");
+
+        if (resumeBtn) {
+            resumeBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                this.generatePDF();
+            });
+        }
+
+        if (resumeBtnMobile) {
+            resumeBtnMobile.addEventListener("click", (e) => {
+                e.preventDefault();
+                this.generatePDF();
+            });
         }
     }
 }

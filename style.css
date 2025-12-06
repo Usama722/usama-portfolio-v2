@@ -35,6 +35,27 @@ html {
     }
 }
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 /* Animation classes */
 .fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
@@ -48,16 +69,205 @@ html {
     animation: float 3s ease-in-out infinite;
 }
 
+/* ============ DARK MODE FIXES ============ */
+
+/* Dark Mode Root Variables */
+:root {
+    --primary-color: #3b82f6;
+    --primary-dark: #2563eb;
+    --bg-color: #ffffff;
+    --text-color: #1f2937;
+    --text-color-dark: #f9fafb;
+    --card-bg: #ffffff;
+    --card-bg-dark: #1f2937;
+    --border-color: #e5e7eb;
+    --border-color-dark: #374151;
+}
+
+.dark {
+    --primary-color: #60a5fa;
+    --primary-dark: #3b82f6;
+    --bg-color: #111827;
+    --text-color: #f9fafb;
+    --card-bg: #1f2937;
+    --border-color: #374151;
+}
+
+/* Apply dark mode classes */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Text Colors in Dark Mode */
+.dark .text-gray-600,
+.dark .text-gray-700,
+.dark .text-gray-800,
+.dark .text-gray-900 {
+    color: #d1d5db !important;
+}
+
+.dark .text-gray-500 {
+    color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+    color: #6b7280 !important;
+}
+
+.dark .text-gray-300 {
+    color: #4b5563 !important;
+}
+
+/* Specific dark mode text fixes */
+.dark .text-blue-600 {
+    color: #60a5fa !important;
+}
+
+.dark .text-blue-100 {
+    color: #dbeafe !important;
+}
+
+.dark .text-green-600 {
+    color: #34d399 !important;
+}
+
+.dark .text-purple-600 {
+    color: #a78bfa !important;
+}
+
+.dark .text-yellow-600 {
+    color: #fbbf24 !important;
+}
+
+.dark .text-yellow-300 {
+    color: #fcd34d !important;
+}
+
+/* Background Colors in Dark Mode */
+.dark .bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+.dark .bg-gray-50 {
+    background-color: #111827 !important;
+}
+
+.dark .bg-gray-100 {
+    background-color: #1f2937 !important;
+}
+
+.dark .bg-gray-900 {
+    background-color: #0f172a !important;
+}
+
+.dark .bg-blue-900 {
+    background-color: #1e3a8a !important;
+}
+
+/* Specific background fixes */
+.dark .bg-blue-100 {
+    background-color: rgba(37, 99, 235, 0.2) !important;
+}
+
+.dark .bg-green-100 {
+    background-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.dark .bg-purple-100 {
+    background-color: rgba(168, 85, 247, 0.2) !important;
+}
+
+.dark .bg-yellow-100 {
+    background-color: rgba(234, 179, 8, 0.2) !important;
+}
+
+.dark .bg-orange-100 {
+    background-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+/* Navbar in Dark Mode */
+.dark nav {
+    background-color: rgba(31, 41, 55, 0.9) !important;
+    backdrop-filter: blur(8px);
+}
+
+.dark .nav-link {
+    color: #d1d5db !important;
+}
+
+.dark .nav-link:hover {
+    color: #60a5fa !important;
+}
+
+/* Border Colors in Dark Mode */
+.dark .border-blue-600 {
+    border-color: #60a5fa !important;
+}
+
+.dark .border-white\/30 {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark .border-gray-700 {
+    border-color: #374151 !important;
+}
+
+/* Glass Effect in Dark Mode */
+.dark .glass-effect {
+    background: rgba(31, 41, 55, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Form Inputs in Dark Mode */
+.dark input,
+.dark textarea {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #f9fafb !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+    color: #9ca3af !important;
+}
+
+.dark input:focus,
+.dark textarea:focus {
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+/* Cards in Dark Mode */
+.dark .enhanced-card {
+    background: linear-gradient(145deg, #1f2937, #111827) !important;
+    border: 1px solid #374151 !important;
+}
+
+.dark .shadow-lg,
+.dark .shadow-xl,
+.dark .shadow-2xl {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .shadow-lg:hover,
+.dark .shadow-xl:hover,
+.dark .shadow-2xl:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
 /* Navigation link styles */
 .nav-link {
-    color: #4b5563; /* gray-600 */
+    color: #4b5563;
     transition: color 0.3s;
     position: relative;
     padding: 0.5rem 0;
 }
 
 .nav-link:hover {
-    color: #3b82f6; /* blue-600 */
+    color: #3b82f6;
 }
 
 .nav-link::after {
@@ -73,6 +283,10 @@ html {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+.dark .nav-link::after {
+    background-color: #60a5fa;
 }
 
 /* CTA Button styles */
@@ -111,6 +325,19 @@ html {
 /* Progress bar animation */
 .progress-bar {
     transition: width 1.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
 }
 
 /* Glass effect */
@@ -138,6 +365,19 @@ html {
     background: #2563eb;
 }
 
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
 /* Typography improvements */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
@@ -154,32 +394,67 @@ section {
     animation: fadeIn 1s ease-out;
 }
 
-/* Responsive improvements */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem !important;
-    }
-    
-    .hero h2 {
-        font-size: 1.25rem !important;
-    }
-    
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+/* Toast notifications */
+.custom-toast {
+    animation: slideInRight 0.3s ease-out;
+    max-width: 350px;
+    z-index: 9999;
 }
 
-/* Print styles */
-@media print {
-    .no-print {
-        display: none;
-    }
-    
-    body {
-        font-size: 12pt;
-        line-height: 1.4;
-    }
+.custom-toast.opacity-0 {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Enhanced Cards */
+.enhanced-card {
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.enhanced-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 50;
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg) scale(1.1);
+}
+
+.theme-toggle i {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+/* Dark mode specific for theme toggle */
+.dark .theme-toggle {
+    background: #1f2937;
+    border-color: #60a5fa;
+}
+
+.dark .theme-toggle i {
+    color: #60a5fa;
 }
 
 /* Loading animation */
@@ -192,7 +467,156 @@ section {
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.dark .loading-spinner {
+    border: 3px solid #374151;
+    border-top: 3px solid #60a5fa;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem !important;
+    }
+
+    .hero h2 {
+        font-size: 1.25rem !important;
+    }
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .theme-toggle {
+        bottom: 1rem;
+        left: 1rem;
+        width: 45px;
+        height: 45px;
+    }
+
+    .theme-toggle i {
+        font-size: 1.1rem;
+    }
+
+    section {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .theme-toggle {
+        bottom: 5rem;
+        left: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    #back-to-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .theme-toggle,
+    .cta-button,
+    .no-print,
+    #back-to-top,
+    #menu-btn,
+    #mobile-menu {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+
+    nav {
+        position: static !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}
+
+/* Excel Specific Styling */
+.excel-badge {
+    background: linear-gradient(135deg, #217346, #185c37);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Modal styles */
+.modal-project-details {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-project-details > div {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Additional Dark Mode Specific Fixes */
+.dark .bg-gradient-to-r {
+    background-image: linear-gradient(to right, #1e3a8a, #3730a3) !important;
+}
+
+.dark .from-blue-600 {
+    --tw-gradient-from: #1e3a8a !important;
+}
+
+.dark .to-purple-600 {
+    --tw-gradient-to: #3730a3 !important;
+}
+
+.dark .bg-blue-400 {
+    background-color: #3b82f6 !important;
+}
+
+.dark .from-blue-400 {
+    --tw-gradient-from: #3b82f6 !important;
+}
+
+.dark .to-purple-500 {
+    --tw-gradient-to: #8b5cf6 !important;
+}
+
+/* Fix for any remaining black text */
+.dark * {
+    color: inherit;
+}
+
+/* Specific fix for paragraphs in dark mode */
+.dark p {
+    color: #d1d5db !important;
+}
+
+/* Fix for links in dark mode */
+.dark a {
+    color: #60a5fa !important;
+}
+
+.dark a:hover {
+    color: #93c5fd !important;
 }
