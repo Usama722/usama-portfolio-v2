@@ -14,7 +14,7 @@ const portfolioConfig = {
         resumeUrl: "assets/docs/resume.pdf",
 
         // Profile Images
-        profileImage: "assets/images/dp.jpeg",  // آپ کی تصویر
+        profileImage: "assets/images/dp.jpeg",
         aboutImage: "assets/images/about.jpeg"
     },
 
@@ -76,8 +76,8 @@ const portfolioConfig = {
             description: "Full-featured online shopping platform with cart, payments, and admin dashboard.",
             longDescription: "Built with React, Node.js, and MongoDB. Features include user authentication, product management, payment integration, and order tracking.",
             tags: ["React", "Node.js", "MongoDB", "Express"],
-            image: "assets/images/project1.jpg",
-            githubUrl: "https://github.com/yourusername/ecommerce", // Update username
+            image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "https://github.com/Usama722/ecommerce",
             liveUrl: "https://ecommerce-demo.com",
             featured: true
         },
@@ -87,8 +87,8 @@ const portfolioConfig = {
             description: "Interactive dashboard for data visualization and analysis using Excel and PostgreSQL.",
             longDescription: "Combines Microsoft Excel for data processing with PostgreSQL for data storage. Features include real-time data updates, interactive charts, and automated reports.",
             tags: ["Microsoft Excel", "PostgreSQL", "Data Analysis", "VBA"],
-            image: "assets/images/project2.jpg",
-            githubUrl: "https://github.com/yourusername/data-dashboard", // Update username
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "https://github.com/Usama722/data-dashboard",
             liveUrl: "https://data-dashboard.com",
             featured: true
         },
@@ -98,8 +98,8 @@ const portfolioConfig = {
             description: "Collaborative task management application with real-time updates.",
             longDescription: "Built with Vue.js and Firebase. Features include team collaboration, real-time updates, file attachments, and deadline tracking.",
             tags: ["Vue.js", "Firebase", "Real-time"],
-            image: "assets/images/project3.jpg",
-            githubUrl: "https://github.com/yourusername/task-app", // Update username
+            image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+            githubUrl: "https://github.com/Usama722/task-app",
             liveUrl: "https://taskapp.com",
             featured: true
         },
@@ -110,7 +110,7 @@ const portfolioConfig = {
             longDescription: "Uses weather API to provide real-time forecasts, interactive maps, and location-based services. Built with vanilla JavaScript and Chart.js.",
             tags: ["JavaScript", "API", "Chart.js"],
             image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-            githubUrl: "https://github.com/yourusername/weather-app", // Update username
+            githubUrl: "https://github.com/Usama722/weather-app",
             liveUrl: "https://weatherapp.com",
             featured: false
         }
@@ -161,7 +161,7 @@ const portfolioConfig = {
 
     // ============ CONTACT FORM ============
     contact: {
-        formspreeId: "your-formspree-id", // Optional: for form submissions
+        formspreeId: "https://formspree.io/f/mkgdzeqd",
         successMessage: "Thank you! Your message has been sent successfully.",
         errorMessage: "Oops! Something went wrong. Please try again."
     },
@@ -183,22 +183,3 @@ const portfolioConfig = {
         author: "Muhammad Usama"
     }
 };
-
-// Export configuration
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = portfolioConfig;
-}
-/ /   A u t o - d e p l o y   t e s t   -   
- 
- 
- 
- 0 6   D e c e m b e r   2 0 2 5   5 . 3 3 . 1 4   P M 
- 
- 
- 
- 
- 
- / /   A u t o - d e p l o y   t e s t   -   N e w   r e p o s i t o r y   s e t u p   -   1 2 / 0 6 / 2 0 2 5   1 7 : 4 8 : 4 4 
- 
- / /   A u t o - d e p l o y   t e s t   a t   1 2 / 0 6 / 2 0 2 5   1 8 : 1 6 : 4 7  
- 
