@@ -34,7 +34,7 @@ const portfolioConfig = {
             description: "HTML, CSS, JavaScript, React",
             icon: "fab fa-html5",
             color: "blue",
-            level: 40
+            level: 30
         },
         {
             name: "Backend",
@@ -188,10 +188,17 @@ const portfolioConfig = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = portfolioConfig;
 }
-/ /   A u t o - d e p l o y   t e s t   -    
-  
- 0 6   D e c e m b e r   2 0 2 5   5 . 3 3 . 1 4   P M  
-  
-  
- / /   A u t o - d e p l o y   t e s t   -   N e w   r e p o s i t o r y   s e t u p   -   1 2 / 0 6 / 2 0 2 5   1 7 : 4 8 : 4 4  
+/ /   A u t o - d e p l o y   t e s t   -   
+ 
+ 
+ 
+ 0 6   D e c e m b e r   2 0 2 5   5 . 3 3 . 1 4   P M 
+ 
+ 
+ 
+ 
+ 
+ / /   A u t o - d e p l o y   t e s t   -   N e w   r e p o s i t o r y   s e t u p   -   1 2 / 0 6 / 2 0 2 5   1 7 : 4 8 : 4 4 
+ 
+ / /   A u t o - d e p l o y   t e s t   a t   1 2 / 0 6 / 2 0 2 5   1 8 : 1 6 : 4 7  
  
