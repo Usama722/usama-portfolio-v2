@@ -273,65 +273,106 @@ class PDFGenerator {
     }
 
     addProjectsSection() {
-        this.addSectionHeader('KEY PROJECTS');
+    this.addSectionHeader('PROJECTS');
 
-        this.doc.setFontSize(11);
+    this.doc.setFontSize(11);
 
-        const featuredProjects = this.config.projects.filter(p => p.featured);
+    const featuredProjects = this.config.projects.filter(p => p.featured);
 
-        featuredProjects.forEach((project, index) => {
-            // Check page break
-            if (this.currentY > this.pageHeight - 40) {
-                this.addNewPage();
-            }
+    featuredProjects.forEach((project, index) => {
+        // Check page break
+        if (this.currentY > this.pageHeight - 50) {
+            this.addNewPage();
+        }
 
-            // Project title (bold)
-            this.doc.setFont("helvetica", "bold");
-            this.doc.setTextColor(0, 0, 0);
-            this.doc.text(`${index + 1}. ${project.title}`, this.margin, this.currentY);
+        // Project number
+        this.doc.setFont("helvetica", "bold");
+        this.doc.setTextColor(59, 130, 246);
+        this.doc.text(`${index + 1}.`, this.margin, this.currentY);
 
-            // Description
-            this.currentY += 5;
-            this.doc.setFont("helvetica", "normal");
-            this.doc.setTextColor(80, 80, 80);
-            const descLines = this.doc.splitTextToSize(project.description, this.pageWidth - (2 * this.margin));
-            this.doc.text(descLines, this.margin, this.currentY);
+        // Project title
+        this.doc.setTextColor(0, 0, 0);
+        this.doc.text(project.title, this.margin + 10, this.currentY);
 
-            this.currentY += (descLines.length * this.lineHeight) + 4;
+        // Description
+        this.currentY += 6;
+        this.doc.setFont("helvetica", "normal");
+        this.doc.setFontSize(10);
+        this.doc.setTextColor(80, 80, 80);
+        const descLines = this.doc.splitTextToSize(project.description, this.pageWidth - (2 * this.margin) - 10);
+        this.doc.text(descLines, this.margin + 10, this.currentY);
 
-            // Tags
-            this.doc.setFontSize(9);
-            let tagX = this.margin;
-            const tagY = this.currentY;
+        this.currentY += (descLines.length * this.lineHeight) + 4;
 
-            project.tags.forEach(tag => {
-                const tagWidth = this.doc.getStringUnitWidth(tag) * 2.5 + 6;
+        // Simple tags inline
+        this.doc.setFontSize(9);
+        this.doc.setTextColor(100, 100, 100);
 
-                // Tag background
-                this.doc.setFillColor(59, 130, 246, 0.1); // Light blue background
-                this.doc.roundedRect(tagX, tagY - 3, tagWidth, 5, 1, 1, 'F');
-
-                // Tag text
-                this.doc.setTextColor(59, 130, 246); // Blue text
-                this.doc.text(tag, tagX + 3, tagY);
-
-                tagX += tagWidth + 4;
-            });
-
-            this.currentY += 10;
-
-            // Add separator line between projects (except last)
-            if (index < featuredProjects.length - 1) {
-                this.doc.setDrawColor(230, 230, 230);
-                this.doc.setLineWidth(0.2);
-                this.doc.line(this.margin + 10, this.currentY - 2, this.pageWidth - this.margin - 10, this.currentY - 2);
-                this.currentY += 5;
+        let tagsText = "Technologies: ";
+        project.tags.forEach((tag, i) => {
+            tagsText += tag;
+            if (i < project.tags.length - 1) {
+                tagsText += ", ";
             }
         });
 
-        this.currentY += this.sectionSpacing;
-    }
+        const tagLines = this.doc.splitTextToSize(tagsText, this.pageWidth - (2 * this.margin) - 10);
+        this.doc.text(tagLines, this.margin + 10, this.currentY);
 
+        this.currentY += (tagLines.length * 5) + 8;
+
+        // Add space between projects
+        if (index < featuredProjects.length - 1) {
+            this.currentY += 3;
+        }
+    });
+
+    this.currentY += this.sectionSpacing;
+}
+drawTags(tags, startX, startY) {
+    const tagPaddingX = 6;
+    const tagPaddingY = 2;
+    const tagMargin = 4;
+    const tagFontSize = 8;
+
+    let currentX = startX;
+    let currentY = startY;
+    const maxWidth = this.pageWidth - this.margin - 10;
+
+    this.doc.setFontSize(tagFontSize);
+
+    tags.forEach((tag, index) => {
+        // Calculate tag width
+        const tagWidth = this.doc.getStringUnitWidth(tag) * tagFontSize * 0.25 + (tagPaddingX * 2);
+
+        // Check if tag fits on current line
+        if (currentX + tagWidth > maxWidth) {
+            // Move to next line
+            currentX = startX;
+            currentY += 7; // Tag height + margin
+        }
+
+        // Tag background - Blue with rounded corners
+        this.doc.setFillColor(59, 130, 246, 0.15);
+        this.doc.setDrawColor(59, 130, 246, 0.3);
+        this.doc.setLineWidth(0.3);
+        this.doc.roundedRect(currentX, currentY, tagWidth, 5, 1, 1, 'FD');
+
+        // Tag text - Centered
+        this.doc.setTextColor(59, 130, 246);
+        const textX = currentX + tagPaddingX;
+        const textY = currentY + 3.5;
+        this.doc.text(tag, textX, textY);
+
+        // Move to next tag position
+        currentX += tagWidth + tagMargin;
+    });
+
+    // Update Y position based on number of tag lines
+    const tagsPerLine = Math.floor((maxWidth - startX) / 50); // Approximate
+    const tagLines = Math.ceil(tags.length / tagsPerLine);
+    this.currentY += (tagLines * 7) + 2;
+}
     addSectionHeader(title) {
         // Check if we need a new page
         if (this.currentY > this.pageHeight - 30) {
