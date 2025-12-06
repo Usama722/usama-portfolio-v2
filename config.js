@@ -112,7 +112,6 @@ const portfolioConfig = {
             tags: ["PostgreSQL", "Excel", "Database", "Full-Stack"],
             image: "https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RGF0YWJhc2UlMjBJbnRlZ3JhdGlvbiUyMFN5c3RlbXxlbnwwfHwwfHx8MA%3D%3D",
             githubUrl: "",
-
             liveUrl: "",
             featured: true
         }
